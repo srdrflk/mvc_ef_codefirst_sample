@@ -1,0 +1,34 @@
+﻿@model mvc_ef_codefirst_sample.Models.Adresler
+
+@{
+    ViewBag.Title = "Duzenle";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>Adres Duzenle</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="input-group">
+        <span class="input-group-text" id="txtAdres"> Adres </span>
+        @Html.TextAreaFor(x => x.AdresTanim, new { @class = "form-control", placeholder = "Adresiniz..", aria_describedby = "txtAdres", cols = "30", rows = "10" })
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-text" id="ddlKisi"> Kişi </span>
+        @Html.DropDownListFor(x => x.Kisi.ID, (List<SelectListItem>)ViewBag.kisiler, new { @class = "form-control", aria_describedby = "ddlKisi" })
+    </div>
+    <br />
+    <div class="input-group">
+        <input type="submit" value="Kaydet" class="btn btn-success" />
+    </div>
+    <br />
+    <div class="input-group">
+        @if (ViewBag.result != null)
+        {
+            <div class="alert alert-@ViewBag.status" role="alert">
+                @ViewBag.result
+            </div>
+        }
+    </div>
+}

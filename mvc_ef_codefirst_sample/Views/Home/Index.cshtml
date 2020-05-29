@@ -1,0 +1,55 @@
+﻿@using mvc_ef_codefirst_sample.ViewModels.Home
+@model IndexViewModels
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Index Page</h2>
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-6">
+            @Html.ActionLink("Yeni kişi ekle", "Yeni", "Kisi", null, new { @class = "btn btn-primary" })
+            <br />
+            <br />
+            <h4>Kişiler</h4>
+            <hr />
+            <ul>
+                @foreach (var x in Model.Kisiler)
+                {
+                <li>
+                    @Html.ActionLink("Düzenle", "Duzenle", "Kisi", new { kisiid = x.ID }, new { @class = "btn btn-warning btn-xs" })
+                    @Html.ActionLink("Sil", "Sil", "Kisi", new { kisiid = x.ID }, new { @class = "btn btn-danger btn-xs"})
+                    @(x.Ad + " " + x.Soyad) (@x.Yas)
+                </li>
+                }
+            </ul>
+        </div>
+        <div class="col col-md-6">
+            @Html.ActionLink("Yeni adres ekle", "Yeni", "Adres", null, new { @class = "btn btn-primary" })
+            <br />
+            <br />
+            <h4>Adresler</h4>
+            <hr />
+            <ul>
+                @foreach (var x in Model.Adresler)
+                {
+                <li>
+                    @Html.ActionLink("Düzenle", "Duzenle", "Adres", new { adresid = x.ID }, new { @class = "btn btn-warning btn-xs" })
+                    @Html.ActionLink("Sil", "Sil", "Adres", new { adresid = x.ID }, new { @class = "btn btn-danger btn-xs" })
+                    @x.AdresTanim (<i>@(x.Kisi.Ad + " " + x.Kisi.Soyad)</i>)
+                </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
